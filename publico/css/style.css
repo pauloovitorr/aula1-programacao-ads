@@ -1,0 +1,168 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkslategrey;
+    flex-direction: column;
+}
+h1{
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+}
+
+#pp{
+    font-size: 25px;
+}
+
+.div-fomr{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+   
+}
+
+.div-fomr form{
+    border: 2px solid black;
+    padding: 25px;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.37);
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px 1px black;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div-fomr form label{
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.div-fomr form input{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 200;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.div-fomr form button{
+    width: 35%;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(68, 177, 240);
+    font-weight: 600;
+    border: 1px solid black;
+    transition: .5s;
+    
+}
+
+
+.div-fomr form button:hover,
+#btn-form:hover{
+    background-color: rgba(2, 28, 39, 0.514);
+    color: white ;
+    border: 1px solid rgb(68, 177, 240);
+}
+
+h3{
+    text-align: center;
+    color: white;
+}
+
+.form-cadastro{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column ;
+    border-radius: 8px;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.37);
+}
+
+.form-cadastro div{
+    margin: 10px;
+    
+}
+
+.form-cadastro div label{
+    font-weight: 200;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form-cadastro div input{
+    width: 80%;
+    margin-top:  7px;
+    padding: 3px;
+    font-size: 15px;
+    font-weight: 200;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#btn-form{
+   width: 20%;
+   margin-left: 200px;
+   border-radius: 5px;
+   padding: 5px;
+   cursor: pointer;
+   background-color: rgb(68, 177, 240);
+   font-weight: 600;
+   border: 1px solid black;
+   transition: .5s;
+}
+
+@media(max-width: 900px){
+
+    .div-fomr{
+        width: 45%;
+        margin-top: 50px;
+
+    }
+    h1{
+        font-size: 30px;
+    }
+    #pp{
+        font-size: 20;
+    }
+    #btn-form{
+        margin-left: 150px
+    }
+}
+
+@media(max-width: 550px){
+
+    .div-fomr{
+        width: 60%;
+        margin-top: 40px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    #pp{
+        font-size: 13px;
+    }
+    #btn-form{
+       margin-left: 80px;
+       width: 40;
+    }
+}
+
+@media(max-width: 380px){
+
+    .div-fomr{
+        width: 90%;
+        margin-top: 30px;
+    }
+    h1{
+        font-size: 15px;
+    }
+    #btn-form{
+        margin-left: 30px;
+        width: 50%;
+    }
+
+}

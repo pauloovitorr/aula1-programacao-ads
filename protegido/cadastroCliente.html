@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/trabalho.js" defer></script>
+  <title>Festival Cristão</title>
+
+</head>
+
+<body>
+  
+
+ 
+
+            <h3>Preencha o seguinte formulário</h3>
+
+              <!--Formulario-->
+
+            <form action="#" method="" class="form-cadastro">
+              <div >
+
+                <div>
+                  <label for="name">Nome do grupo/banda: <span class="obrigatorio">*<span id="erro_nome"></span></span></label> <br>
+                  <input type="text" name="name" id="name" onblur="verifica_nome()" maxlength="15" placeholder="ex: grupo Uma Voz" required>
+                </div>
+
+                <div class="">
+                  <label for="email">Email para contato: <span class="obrigatorio">*<span id="erro_email"></span></span></label><br>
+                  <input type="email"  name="email" id="email" onblur="verifica_email()" placeholder="ex: gp_umavoz@contact.com.br" required>
+                </div>
+
+                <div >
+                  <label for="tell">Telefone para contato: <span class="obrigatorio">*</span></label><br>
+                  <input type="tel"  name="tel" id="tell" maxlength="14"  onkeyup="valida_telefone()" placeholder="ex: (99)99999-9999" required>
+                </div>
+
+                <div>
+                  <label for="number">Número de integrantes: <span class="obrigatorio">*<span id="erro_num"></span></span></label><br>
+                  <input type="number"  name="number" id="number" onblur="valida_num()" min="1" max="9" placeholder="Máximo: 9" required>
+                </div>
+
+                <div>
+                  <label for="cpf">Cpf do responsável: <span class="obrigatorio">*<span id="erro_cpf"></span></span></label><br>
+                  <input type="text"  name="text" id="cpf" onkeyup=" mCpf()" maxlength="14" placeholder="999.999.999-99" required>
+                </div>
+
+                <div>
+                  <label for="cargo">Seu cargo na banda: </label><br>
+                  <select  id="cargo" class="col-md-12 p-2 border-0">
+                    
+                    <option value=""></option>
+                    <option value="agente">Agente</option>
+                    <option value="fundador">Fundador</option>
+                    <option value="cantor">Cantor</option>
+                    <option value="musico">Músico</option>
+                  </select>
+                </div>
+
+            <div >
+            
+                  <div >
+                    <br>
+                    <label for="">Selecione a cor da camisa para a apresentação (iremos fabricar): </label> <br>
+                      <input type="color" class="col-lg-4" style="height: 30px">
+                  </div><br>
+
+              </div>
+
+              <button id="btn-form" onclick="verifica_erros()" type="submit">Cadastrar</button>
+            </form>
+
+             <!--Fim Formulario-->
+
+</body>
+
+</html>
