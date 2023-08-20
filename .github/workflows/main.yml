@@ -22,7 +22,7 @@ jobs:
     env:
       USUARIO: aluno18-ppiadsead
       SENHA: pejufa20
-      PORTA: 3224
+      PORTA: 3218
     if: github.ref == 'refs/heads/main'
     needs: [deploy-init]
     runs-on: ubuntu-latest
@@ -36,8 +36,8 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: 129.146.32.171
-          username: ${{ env.aluno18-ppiadsead }}
-          password: ${{ env.@Pejufa20 }}
+          username: ${{ env.USUARIO }}
+          password: ${{ env.SENHA }}
           port: 22
           source: "*"
           target: "/home/${{ env.USUARIO }}/htdocs/${{ env.USUARIO }}.fake.edu.br/"
