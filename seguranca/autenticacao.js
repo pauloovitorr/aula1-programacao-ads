@@ -3,6 +3,6 @@ export default function autenticar(req, res, next){
         next(); 
     }
     else{
-        res.redirect('/login.html');
+        res.redirect('/aluno18-ppiadsead/login.html');
     }
 }

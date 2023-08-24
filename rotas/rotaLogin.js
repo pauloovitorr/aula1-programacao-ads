@@ -4,7 +4,7 @@ const rotaLogin = Router();
 
 rotaLogin
 .get('/', (req, res)=>{
-    res.redirect('/login.html');
+    res.redirect('/aluno18-ppiadsead/login.html');
 })
 
 
@@ -14,7 +14,7 @@ rotaLogin
 
     if (usuario === 'Renato' && senha === '123'){
         req.session.usuarioLogado = true;
-        res.redirect('/cadastroCliente.html');
+        res.redirect('/aluno18-ppiadsead/cadastroCliente.html');
     }
     else{
         res.send("<p>Usuário ou Senha inválida</p> <button onclick='history.back()'> Tentar novamente</button>");
