@@ -121,6 +121,7 @@ function valida_telefone() {
 
  }
 
+ 
 
 function verifica_erros(){
     
