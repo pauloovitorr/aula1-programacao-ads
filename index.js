@@ -30,8 +30,7 @@ app.use(express.static('./publico'));
 //teste
 app.use('/banda', (req,res)=>{
     const banda = new Banda()
-    banda.consultar('')
-    .then((listaBandas)=>{
+    banda.consultar('').then((listaBandas)=>{
         res.json(listaBandas)
     })
 })
