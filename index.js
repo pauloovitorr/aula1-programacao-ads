@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static('./publico'));
 
 //teste
-app.use('/banda', (req,res)=>{
+app.use('/bandas', (req,res)=>{
     const banda = new Banda()
     banda.consultar('').then((listaBandas)=>{
         res.json(listaBandas)
