@@ -42,7 +42,7 @@ async consultar(termo){
     const conexao = await conectar()
     if(!termo) termo = ''
        const listaBanda = []
-       const sql = 'SELECT * FROM banda WHERE nome LIKE ?'
+       const sql = 'SELECT * FROM banda WHERE nome_banda LIKE ?'
        const parametro = ['%' + termo + '%']
        const [rows] = await conexao.query(sql, parametro)
 
@@ -54,7 +54,5 @@ async consultar(termo){
 
     return listaBanda
 }
-
-
 
 }

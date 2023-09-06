@@ -69,6 +69,19 @@ export default class Banda{
         this.#cor = novo_cor
     }
 
+    toJSON(){
+        return {
+            nome_banda: this.#nome_banda,
+            email: this.#email,
+            telefone: this.#telefone,
+            num_integrantes: this.#num_integrantes,
+            cpf : this.#cpf,
+            cargo: this.#cargo,
+            cor : this.#cor
+        
+        }
+    } 
+
     async gravar(){
         const bandaDAO = new BandaDAO()
         await bandaDAO.gravar(this)
