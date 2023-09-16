@@ -31,6 +31,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static('./publico'));
 
 
+
 //teste
 app.use('/bandas', rotaBanda )
 
