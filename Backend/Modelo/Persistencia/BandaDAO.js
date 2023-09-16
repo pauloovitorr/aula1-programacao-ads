@@ -30,7 +30,7 @@ export default class BandaDAO{
 async excluir(banda){
     if(banda instanceof Banda){
         const conexao = await conectar()
-        const sql = 'DELETE FROM banda WHERE cpf = ?'
+        const sql = 'DELETE FROM banda WHERE cpf = ? '
         const parametro = [banda.cpf]
 
         await conexao.execute(sql, parametro)

@@ -3,12 +3,15 @@ import autenticar from './seguranca/autenticacao.js';
 import session, { Cookie } from 'express-session';
 import rotaLogin from './rotas/rotaLogin.js';
 import Banda from './Backend/Modelo/Banda.js'
+import rotaBanda from './Backend/Rotas/rotaBanda.js';
 
 const host = '0.0.0.0';
 
 const porta = 3218;
 
 const app = express();
+app.use(express.json())
+
 
 // memoriza usuários
 app.use(session({
@@ -27,17 +30,12 @@ app.use(express.urlencoded({extended: false}));
 //arquivos staticos
 app.use(express.static('./publico'));
 
+
 //teste
-app.use('/bandas', (req,res)=>{
-    const banda = new Banda()
-    banda.consultar('').then((listaBandas)=>{
-        res.json(listaBandas)
-    })
-})
+app.use('/bandas', rotaBanda )
 
 app.use('/login', rotaLogin);
 app.use(autenticar, express.static('./protegido'));
-
 
 
 

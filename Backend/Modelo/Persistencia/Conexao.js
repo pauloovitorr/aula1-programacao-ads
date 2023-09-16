@@ -22,5 +22,5 @@ export default async function conectar(){
     })
 
     return await global.poolConexoes.getConnection()
-    
+
 }
