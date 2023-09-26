@@ -6,7 +6,7 @@ window.onload = ()=>{
 function obterBanda(){
     fetch('https://129.146.68.51/aluno18-ppiadsead/bandas', {method: 'GET'})
     .then((resposta)=>{
-        if(resposta.status === 20){
+        if(resposta.status === 200){
             return resposta.json()
         }else{
             return []
@@ -15,7 +15,6 @@ function obterBanda(){
     .then((listaBanda)=>{
         mostrarBandas(listaBanda)
     })
-
 }
 
 function mostrarBandas(lista_banda) {
