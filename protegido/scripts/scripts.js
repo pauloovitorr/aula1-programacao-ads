@@ -1,9 +1,24 @@
 
 window.onload = ()=>{
-    mostrarClientes([])
+    obterBanda()
 }
 
-function mostrarClientes(lista_banda) {
+function obterBanda(){
+    fetch('https://129.146.68.51/aluno18-ppiadsead/bandas', {method: 'GET'})
+    .then((resposta)=>{
+        if(resposta.status === 20){
+            return resposta.json()
+        }else{
+            return []
+        }
+    })
+    .then((listaBanda)=>{
+        mostrarBandas(listaBanda)
+    })
+
+}
+
+function mostrarBandas(lista_banda) {
     let elementoDivTabela = document.getElementById('espacoTabela')
 
     if(lista_banda.length > 0){
@@ -49,7 +64,7 @@ function mostrarClientes(lista_banda) {
     }  
     else{
         elementoDivTabela.innerHTML =`<div class="alert alert-warning" role="alert">
-                                        Nenhum cliente cadastrado
+                                        Nenhuma Banda cadastrada
                                       </div>`
     }
 
