@@ -1,6 +1,18 @@
 
 window.onload = ()=>{
     obterBanda()
+
+}
+
+function mostrarMensagem(mensagem, tipo){
+    let divMenssagem = document.getElementById('menssagem')
+    divMenssagem.innerHTML = `<div class="alert alert-${tipo}" role="alert">
+                                ${mensagem}
+
+                              </div>`
+setTimeout(()=>{
+    divMenssagem.innerHTML = ''
+}, 5000)
 }
 
 function obterBanda(){
@@ -15,7 +27,42 @@ function obterBanda(){
     .then((listaBanda)=>{
         mostrarBandas(listaBanda)
     })
+    .catch((erro)=>{
+        mostrarMensagem('Não foi possivel obter os clientes do backend. Erro:' + erro.message, 'danger')
+})
 }
+
+
+function cadastrarBanda(banda){
+    fetch('https://129.146.68.51/aluno18-ppiadsead/bandas',{
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(banda)
+    }).then((resposta)=>{
+        if(resposta.status === 200){
+            return resposta.json()
+        }
+        else{
+            return {
+                status: false,
+                mensagem : 'Não foi possivel enviar a banda para o backend '
+            }
+        }
+    }).then((respostaBackEnd)=>{
+        if(respostaBackEnd.status){
+            mostrarMensagem(respostaBackEnd.mensagem, 'success')
+        }
+        else{
+            mostrarMensagem(respostaBackEnd.mensagem, 'danger')
+        }
+    }).catch((erro)=>{
+            mostrarMensagem(respostaBackEnd.mensagem, 'danger')
+    })
+
+}
+
 
 function mostrarBandas(lista_banda) {
     let elementoDivTabela = document.getElementById('espacoTabela')
@@ -27,6 +74,7 @@ function mostrarBandas(lista_banda) {
 
     // criando tabela
     let tabela              = document.createElement('table')
+    tabela.className        = 'table table-striped table-hover'
     let cabecalhoTabela     = document.createElement('thead')
     let corpoTabela         = document.createElement('tbody')
 
@@ -46,13 +94,13 @@ function mostrarBandas(lista_banda) {
     // alimentando o corpo da tabela
     for (const banda of lista_banda){
         const linhaTabela = document.createElement('tr')
-        linhaTabela.innerHTML = ` <td> ${lista_banda.nome_banda} <td> 
-                                  <td> ${lista_banda.email} </td>
-                                  <td> ${lista_banda.telefone} </td> 
-                                  <td> ${lista_banda.num_integrantes} </td> 
-                                  <td> ${lista_banda.cpf} </td> 
-                                  <td> ${lista_banda.cargo} </td> 
-                                  <td> ${lista_banda.cor} </td> `
+        linhaTabela.innerHTML = ` <td> ${banda.nome_banda} <td> 
+                                  <td> ${banda.email} </td>
+                                  <td> ${banda.telefone} </td> 
+                                  <td> ${banda.num_integrantes} </td> 
+                                  <td> ${banda.cpf} </td> 
+                                  <td> ${banda.cargo} </td> 
+                                  <td> ${banda.cor} </td> `
 
         corpoTabela.appendChild(linhaTabela)
     }
