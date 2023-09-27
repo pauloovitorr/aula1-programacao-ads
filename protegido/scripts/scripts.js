@@ -1,3 +1,43 @@
+const botaoCadastrar = document.getElementById('btn-form')
+const formulario = document.getElementById('formBanda')
+
+function obterBandaFormulario(){
+
+    return{
+        nome_banda: document.getElementById('name').value , 
+        email: document.getElementById('email').value,
+        telefone: document.getElementById('tell').value,
+        num_integrantes: document.getElementById('number').value,
+        cpf: document.getElementById('cpf').value,
+        cargo: document.getElementById('cargo').value,
+        cor: document.getElementById('cor').value
+    }
+}
+
+
+function limparFormulario(){
+    document.getElementById('name').value  = ''
+    document.getElementById('email').value = ''
+    document.getElementById('tell').value  = ''
+    document.getElementById('number').value= ''
+    document.getElementById('cpf').value   = ''
+    document.getElementById('cargo').value = ''
+    document.getElementById('cor').value   = ''
+}
+
+
+botaoCadastrar.onclick= ()=>{
+    if(formulario.checkValidity()){
+
+        const banda = obterBandaFormulario()
+
+        cadastrarBanda(banda)
+        limparFormulario()
+    }
+
+    formulario.classList.add('was-validated')
+  
+}
 
 window.onload = ()=>{
     obterBanda()
@@ -28,11 +68,11 @@ function obterBanda(){
         mostrarBandas(listaBanda)
     })
     .catch((erro)=>{
-        mostrarMensagem('Não foi possivel obter os clientes do backend. Erro:' + erro.message, 'danger')
+        mostrarMensagem('Não foi possivel obter as bandas do backend. Erro:' + erro.message, 'danger')
 })
 }
 
-
+// cadastrar banda
 function cadastrarBanda(banda){
     fetch('https://129.146.68.51/aluno18-ppiadsead/bandas',{
         method: 'POST',
@@ -58,7 +98,7 @@ function cadastrarBanda(banda){
             mostrarMensagem(respostaBackEnd.mensagem, 'danger')
         }
     }).catch((erro)=>{
-            mostrarMensagem(respostaBackEnd.mensagem, 'danger')
+            mostrarMensagem(erro.mensagem, 'danger')
     })
 
 }
