@@ -125,10 +125,12 @@ h3{
 }
 #atualizar{
     background-color: rgb(68, 240, 160);
+    color: black;
 }
 
 #excluir{
     background-color: rgb(224, 59, 18);
+    color: black;
 }
 
 @media(max-width: 900px){

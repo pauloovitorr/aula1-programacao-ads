@@ -123,7 +123,7 @@ function mostrarBandas(lista_banda) {
 
     // criando tabela
     let tabela              = document.createElement('table')
-    tabela.className        = 'table table-striped table-hover'
+    tabela.className        = 'table table-striped table-hover text-center'
     let cabecalhoTabela     = document.createElement('thead')
     let corpoTabela         = document.createElement('tbody')
 
@@ -150,9 +150,9 @@ function mostrarBandas(lista_banda) {
                                   <td> ${banda.cpf} </td> 
                                   <td> ${banda.cargo} </td> 
                                   <td> ${banda.cor} </td> 
-                                  <td><button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')">Editar</button> </td>
-                                  
-                                  <td><button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'exclusao')">Excluir</button></td>`
+                                  <td><button type="button" class="bg-primary-subtle" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')">Editar</button> </td>
+
+                                  <td><button type="button" class="bg-danger text-white" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'exclusao')">Excluir</button></td>`
  
         corpoTabela.appendChild(linhaTabela)
     }
@@ -209,6 +209,13 @@ function prepararFormulario(nome_banda='',email='',telefone='',num_integrantes='
 
 }
 
+function zera() {
+    divMenssagem = document.getElementById('menssagem').innerHTML  = ''
+  }
+  
+  
+  
+
 function apagarBanda(){
     if(confirm('Confirma a exclusão da banda selecionada')){
         fetch('https://129.146.68.51/aluno18-ppiadsead/bandas', {
@@ -229,6 +236,9 @@ function apagarBanda(){
         divMenssagem = document.getElementById('menssagem').innerHTML  = `<div>
                             ${dados.mensagem}
                       </div>`
+
+        setTimeout(zera, 5000); // Executa a função dizerOla após um atraso de 3000 milissegundos (3 segundos)
+
         prepararFormulario()
         obterBanda()
     })
