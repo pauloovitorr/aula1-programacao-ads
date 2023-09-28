@@ -84,6 +84,15 @@ h3{
     background-color: rgba(128, 128, 128, 0.37);
 }
 
+.formBanda{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column ;
+    border-radius: 8px;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.37);
+}
+
 .form-cadastro div{
     margin: 10px;
     

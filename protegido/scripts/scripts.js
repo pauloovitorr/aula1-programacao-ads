@@ -2,11 +2,9 @@ const botaoCadastrar = document.getElementById('btn-form')
 const formulario = document.getElementById('formBanda')
 
 // btn excluir e editar
-document.getElementById('excluir').onclick = apagarBanda
-
 document.getElementById('atualizar').onclick = atualizarBanda
 
-
+document.getElementById('excluir').onclick = apagarBanda
 
 
 function obterBandaFormulario(){
@@ -151,16 +149,10 @@ function mostrarBandas(lista_banda) {
                                   <td> ${banda.num_integrantes} </td> 
                                   <td> ${banda.cpf} </td> 
                                   <td> ${banda.cargo} </td> 
-                                  <td> ${banda.cor} </td>
-                                <td> 
-                                  <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}','exclusao') >Excluir</button>
-                                </td>
-                                
-                                  <td> 
-        <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')" >Editar</button>
-                                  </td>
-
-        `
+                                  <td> ${banda.cor} </td> 
+                                  <td> <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')">Editar</button> </td>
+                                  <td> <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}','exclusao')>Excluir</button>
+                                    </td>`
  
         corpoTabela.appendChild(linhaTabela)
     }
