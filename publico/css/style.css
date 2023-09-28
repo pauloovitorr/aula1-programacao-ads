@@ -123,6 +123,13 @@ h3{
    border: 1px solid black;
    transition: .5s;
 }
+#atualizar{
+    background-color: rgb(68, 240, 160);
+}
+
+#excluir{
+    background-color: rgb(224, 59, 18);
+}
 
 @media(max-width: 900px){
 
