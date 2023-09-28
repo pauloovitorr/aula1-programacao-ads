@@ -23,6 +23,7 @@ function limparFormulario(){
     document.getElementById('cpf').value   = ''
     document.getElementById('cargo').value = ''
     document.getElementById('cor').value   = ''
+    formulario.classList.remove('was-validated')
 }
 
 
@@ -34,8 +35,9 @@ botaoCadastrar.onclick= ()=>{
         cadastrarBanda(banda)
         limparFormulario()
     }
-
-    formulario.classList.add('was-validated')
+    else{
+        formulario.classList.add('was-validated')
+    }
   
 }
 
@@ -93,6 +95,7 @@ function cadastrarBanda(banda){
     }).then((respostaBackEnd)=>{
         if(respostaBackEnd.status){
             mostrarMensagem(respostaBackEnd.mensagem, 'success')
+            obterBanda()
         }
         else{
             mostrarMensagem(respostaBackEnd.mensagem, 'danger')
@@ -140,7 +143,12 @@ function mostrarBandas(lista_banda) {
                                   <td> ${banda.num_integrantes} </td> 
                                   <td> ${banda.cpf} </td> 
                                   <td> ${banda.cargo} </td> 
-                                  <td> ${banda.cor} </td> `
+                                  <td> ${banda.cor} </td> 
+                                  <td> 
+        <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')" >Editar</button>
+
+        <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}','exclusao') >Excluir</button>
+                                  </td>`
 
         corpoTabela.appendChild(linhaTabela)
     }
@@ -153,6 +161,43 @@ function mostrarBandas(lista_banda) {
         elementoDivTabela.innerHTML =`<div class="alert alert-warning" role="alert">
                                         Nenhuma Banda cadastrada
                                       </div>`
+    }
+
+}
+
+// Aula 2 
+
+
+function prepararFormulario(nome_banda='',email='',telefone='',num_integrantes='',cpf='',cargo='',cor='', acao=''){
+
+    let botaoCadastra   = document.getElementById('btn-form')
+    let botaoAtualizar  = document.getElementById('atualizar')
+    let botaoExcluir    = document.getElementById('excluir')
+
+    document.getElementById('name').value  = nome_banda
+    document.getElementById('email').value = email
+    document.getElementById('tell').value  = telefone
+    document.getElementById('number').value= num_integrantes
+    document.getElementById('cpf').value   = cpf
+    document.getElementById('cargo').value = cargo
+    document.getElementById('cor').value   = cor
+    
+
+    if(acao === 'exclusao'){
+        botaoCadastra.disabled  = true
+        botaoAtualizar.disabled = true
+        botaoExcluir.disabled   = false
+    }
+    else if(acao === 'atualizacao'){
+        botaoCadastra.disabled  = true
+        botaoAtualizar.disabled = false
+        botaoExcluir.disabled   = true
+    }
+    else{
+        botaoCadastra.disabled  = false
+        botaoAtualizar.disabled = true
+        botaoExcluir.disabled   = true
+      
     }
 
 }
