@@ -1,6 +1,14 @@
 const botaoCadastrar = document.getElementById('btn-form')
 const formulario = document.getElementById('formBanda')
 
+// btn excluir e editar
+document.getElementById('excluir').onclick = apagarBanda
+
+document.getElementById('atualizar').onclick = atualizarBanda
+
+
+
+
 function obterBandaFormulario(){
 
     return{
@@ -146,10 +154,12 @@ function mostrarBandas(lista_banda) {
                                   <td> ${banda.cor} </td> 
                                   <td> 
         <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}', 'atualizacao')" >Editar</button>
+                                  </td>
 
+                                    <td> 
         <button type="button" onclick="prepararFormulario('${banda.nome_banda}','${banda.email}','${banda.telefone}','${banda.num_integrantes}','${banda.cpf}','${banda.cargo}','${banda.cor}','exclusao') >Excluir</button>
-                                  </td>`
-
+                                    </td>`
+ 
         corpoTabela.appendChild(linhaTabela)
     }
 
@@ -184,16 +194,19 @@ function prepararFormulario(nome_banda='',email='',telefone='',num_integrantes='
     
 
     if(acao === 'exclusao'){
+        document.getElementById('cpf').disabled = false
         botaoCadastra.disabled  = true
         botaoAtualizar.disabled = true
         botaoExcluir.disabled   = false
     }
     else if(acao === 'atualizacao'){
+        document.getElementById('cpf').disabled = true
         botaoCadastra.disabled  = true
         botaoAtualizar.disabled = false
         botaoExcluir.disabled   = true
     }
     else{
+        document.getElementById('cpf').disabled = false
         botaoCadastra.disabled  = false
         botaoAtualizar.disabled = true
         botaoExcluir.disabled   = true
@@ -202,3 +215,86 @@ function prepararFormulario(nome_banda='',email='',telefone='',num_integrantes='
 
 }
 
+function apagarBanda(){
+    if(confirm('Confirma a exclusão da banda selecionada')){
+        fetch('https://129.146.68.51/aluno18-ppiadsead/bandas', {
+            method:'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                cpf: document.getElementById('cpf').value
+            })
+    })
+    .then((resposta)=>{
+        if(resposta.status === 200){
+            return resposta.json()
+        }
+    })
+    .then((dados)=>{
+        divMenssagem = document.getElementById('menssagem').innerHTML  = `<div>
+                            ${dados.mensagem}
+                      </div>`
+        prepararFormulario()
+        obterBanda()
+    })
+    .catch((erro)=>{
+        divMenssagem = document.getElementById('menssagem').innerHTML  = `<div>
+        ${erro.message}
+  </div>`
+    })
+    
+    }
+
+    else{
+        prepararFormulario()
+    }
+}
+
+function atualizarBanda(){
+    if(confirm('Confirma a atualização da banda ?')){
+
+        const banda = obterBandaFormulario()
+
+    if(banda){
+
+    fetch('https://129.146.68.51/aluno18-ppiadsead/bandas',{
+        method: 'PUT',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(banda)
+    }).then((resposta)=>{
+        if(resposta.status === 200){
+            return resposta.json()
+        }
+        else{
+            return {
+                status: false,
+                mensagem : 'Não foi possivel enviar a banda para o backend '
+            }
+        }
+    }).then((respostaBackEnd)=>{
+        if(respostaBackEnd.status){
+            mostrarMensagem(respostaBackEnd.mensagem, 'success')
+            prepararFormulario()
+            obterBanda()
+        }
+        else{
+            mostrarMensagem(respostaBackEnd.mensagem, 'danger')
+        }
+    }).catch((erro)=>{
+            mostrarMensagem(erro.mensagem, 'danger')
+    })
+}
+else{
+    divMenssagem = document.getElementById('menssagem').innerHTML  = `<div>
+    Por favor informe corretamente os dados da banda !
+</div>`
+}
+
+}
+else{
+    prepararFormulario()
+}
+}
